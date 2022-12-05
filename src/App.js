@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/reset.css';
+import { useState } from 'react';
+import Main from './components/Main';
+import About from './components/About';
+import Portfolio from './components/Portfolio';
+import {SectionsContainer, Section} from 'react-fullpage';
+import './css/common.css';
 
 function App() {
+  
+  const year = new Date().getFullYear()
+  let options = {
+    anchors: ['sectionOne', 'sectionTwo', 'sectionThree'],
+    navigation: false,
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Main year={year}></Main> */}
+      <SectionsContainer {...options}>
+        <Section>
+          <Main year={year}></Main>
+        </Section>
+        <Section>
+          <About/>
+        </Section>
+        <Section>
+          <Portfolio/>
+        </Section>
+      </SectionsContainer>
     </div>
   );
 }
